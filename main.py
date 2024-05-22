@@ -18,7 +18,6 @@ logger = logging.getLogger(__name__)
 
 
 def start(update: Update, context: CallbackContext) -> None:
-    """Send a message when the command /start is issued."""
     update.message.reply_text('Hi!\nI can give you free udemy coupons')
 
 
@@ -98,6 +97,8 @@ def coupon(update: Update, context: CallbackContext):
 
         update.message.reply_text(
             f'🌀{title}🌀\n\n<b>━━━━━━━━━━━━━━━━</b>\n<b>Rating:</b> {rating} \n<b>Language :</b> {lang} \n<b>Original Price : </b>{price}\n<b>Instructor : </b>{instructor}\n<b>📜Description : </b>{description}\n<b>━━━━━━━━━━━━━━━━━</b>\n<b>Enrollment link:</b>\n{coupons[i]}',
+            reply_markup=telegram.InlineKeyboardMarkup([
+                   [ telegram.InlineKeyboardButton("Get COURSE", url=f"{coupons[i]}") ] ]),
             parse_mode="html",
             disable_web_page_preview=True)
     edit.delete()
@@ -155,6 +156,8 @@ def autocoups(context: telegram.ext.CallbackContext):
                 chat_id="@Udemy_Blaster",
                 text=
                 f'🌀{title}🌀\n\n<b>━━━━━━━━━━━━━━━━</b>\n<b>Rating:</b> {rating} \n<b>Language :</b> {lang} \n<b>Original Price : </b>{price}\n<b>Instructor : </b>{instructor}\n<b>📜Description : </b>{description}\n<b>━━━━━━━━━━━━━━━━━</b>\n<b>Enrollment link:</b>\n{join[i]}',
+                reply_markup=telegram.InlineKeyboardMarkup([
+                       [ telegram.InlineKeyboardButton("Get COURSE", url=f"{join[i]}") ] ]),
                 parse_mode="html")
 
 
